@@ -27,7 +27,7 @@ A simple React app for sharing code snippets. Built for practice with React and 
 2. **Star the repository**: If you find this project helpful, please star the repository!
 3. **Deploy with Vercel**: Click the button below.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/your-username/snippet-sharing-app)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/LazyShuyaa/SnippetsBin)
 
 ## Configuration
 
