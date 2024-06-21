@@ -5,8 +5,8 @@ const { v4: uuidv4 } = require('uuid');
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 5000; // Change to PORT
-const mongoUri = process.env.MONGO_URI; // Change to MONGO_URI
+const port = process.env.PORT || 5000;
+const mongoUri = process.env.MONGO_URI;
 
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
@@ -18,6 +18,7 @@ mongoose.connect(mongoUri, {
   });
 }).catch(err => {
   console.error('MongoDB connection error:', err);
+  process.exit(1);
 });
 
 const snippetSchema = new mongoose.Schema({
@@ -50,6 +51,7 @@ app.get('/api/snippets/:uniqueCode', async (req, res) => {
       expiresAt: snippet.expiresAt ? snippet.expiresAt.toISOString() + 'Z' : null
     });
   } catch (error) {
+    console.error('Error finding snippet:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
@@ -88,10 +90,7 @@ app.post('/api/snippets', async (req, res) => {
       expiresAt: snippet.expiresAt ? snippet.expiresAt.toISOString() + 'Z' : null
     });
   } catch (error) {
+    console.error('Error saving snippet:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-});
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
 });
