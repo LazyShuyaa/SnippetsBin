@@ -8,7 +8,6 @@ import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 const SnippetView = () => {
   const { uniqueCode } = useParams();
   const [snippet, setSnippet] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchSnippet = async () => {
@@ -16,7 +15,6 @@ const SnippetView = () => {
         const response = await axios.get(`/api/snippets/${uniqueCode}`);
         setSnippet(response.data);
         document.title = uniqueCode;
-        setLoading(false);
       } catch (error) {
         console.error('Failed to fetch the snippet!', error);
       }
@@ -57,31 +55,41 @@ const SnippetView = () => {
     );
   };
 
+  if (!snippet) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="animate-spin rounded-full h-20 w-20 border-t-2 border-b-2 border-white"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="p-4 bg-black text-white min-h-screen">
       <div className="border border-gray-700 rounded">
         <div className="bg-gray-700 p-2 rounded-t flex justify-between items-center text-white">
+          <span>Language: {snippet.language}</span>
           <div className="flex items-center space-x-2">
-            <div className="p-1 rounded bg-gray-600 h-6 w-6"></div>
-            <div className="p-1 rounded bg-gray-600 h-6 w-6"></div>
-            <div className="p-1 rounded bg-gray-600 h-6 w-6"></div>
-          </div>
-        </div>
-        <div className="p-4 bg-black text-white rounded-b">
-          {loading ? (
-            <div className="animate-pulse bg-gray-700 h-96 rounded"></div>
-          ) : (
-            renderCodeWithLineNumbers()
-          )}
-        </div>
-        <div className="bg-gray-700 p-2 rounded-b flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <div className="p-1 rounded bg-gray-600 h-6 w-6"></div>
-            <div className="p-1 rounded bg-gray-600 h-6 w-6"></div>
-            <Link to="/" className="p-1 rounded bg-gray-600 h-6 w-6" aria-label="Create new snippet">
+            <button
+              onClick={copyToClipboard}
+              className="p-1 rounded"
+              aria-label="Copy code to clipboard"
+            >
+              <FiCopy />
+            </button>
+            <button
+              onClick={shareUrl}
+              className="p-1 rounded"
+              aria-label="Share URL"
+            >
+              <FiShare2 />
+            </button>
+            <Link to="/" className="p-1 rounded" aria-label="Create new snippet">
               <FiPlus />
             </Link>
           </div>
+        </div>
+        <div className="p-4 bg-black text-white rounded-b">
+          {renderCodeWithLineNumbers()}
         </div>
       </div>
     </div>
