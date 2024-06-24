@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import Highlight from 'react-highlight';
-import 'highlight.js/styles/monokai-sublime.css'; // Use a dark theme for syntax highlighting
-import { FiCopy, FiShare2 } from 'react-icons/fi';
+import { useParams, Link } from 'react-router-dom';
+import { FiCopy, FiShare2, FiPlus } from 'react-icons/fi';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const SnippetView = () => {
   const { uniqueCode } = useParams();
   const [snippet, setSnippet] = useState(null);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchSnippet = async () => {
       try {
         const response = await axios.get(`/api/snippets/${uniqueCode}`);
         setSnippet(response.data);
-        document.title = uniqueCode; // Update document title
+        document.title = uniqueCode;
       } catch (error) {
-        console.error('There was an error fetching the snippet!', error);
-        setError('Failed to load the snippet. Please try again later.');
+        console.error('Failed to fetch the snippet!', error);
       }
     };
 
@@ -42,9 +40,20 @@ const SnippetView = () => {
     }
   };
 
-  if (error) {
-    return <div className="p-4 text-red-500">{error}</div>;
-  }
+  const renderCodeWithLineNumbers = () => {
+    if (!snippet) return null;
+
+    return (
+      <SyntaxHighlighter
+        language={snippet.language}
+        style={atomDark}
+        showLineNumbers
+        customStyle={{ backgroundColor: '#000000' }}
+      >
+        {snippet.code}
+      </SyntaxHighlighter>
+    );
+  };
 
   if (!snippet) {
     return (
@@ -59,29 +68,32 @@ const SnippetView = () => {
 
   return (
     <div className="p-4 bg-black text-white min-h-screen">
-      <div className="flex justify-between mb-4">
-        <button
-          onClick={copyToClipboard}
-          className="p-2 text-white rounded flex items-center hover:bg-gray-600"
-          aria-label="Copy code to clipboard"
-        >
-          <FiCopy className="mr-2" />
-          Copy Code
-        </button>
-        <button
-          onClick={shareUrl}
-          className="p-2 text-white rounded flex items-center hover:bg-gray-600"
-          aria-label="Share URL"
-        >
-          <FiShare2 className="mr-2" />
-          Share URL
-        </button>
-      </div>
-      <p className="mt-4">Language: {snippet.language}</p>
-      <div className="p-4 bg-black text-white">
-        <Highlight className={`${snippet.language} bg-black`}>
-          {snippet.code}
-        </Highlight>
+      <div className="border border-gray-700 rounded">
+        <div className="bg-gray-700 p-2 rounded-t flex justify-between items-center text-white">
+          <span>Language: {snippet.language}</span>
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={copyToClipboard}
+              className="p-1 rounded"
+              aria-label="Copy code to clipboard"
+            >
+              <FiCopy />
+            </button>
+            <button
+              onClick={shareUrl}
+              className="p-1 rounded"
+              aria-label="Share URL"
+            >
+              <FiShare2 />
+            </button>
+            <Link to="/" className="p-1 rounded" aria-label="Create new snippet">
+              <FiPlus />
+            </Link>
+          </div>
+        </div>
+        <div className="p-4 bg-black text-white rounded-b">
+          {renderCodeWithLineNumbers()}
+        </div>
       </div>
     </div>
   );

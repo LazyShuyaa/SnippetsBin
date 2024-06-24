@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { RiLoader4Line } from 'react-icons/ri';
-import { BsArrowRight } from 'react-icons/bs';
 import { LanguageDropdown, ExpireTimeDropdown } from './Dropdowns';
 
 const SnippetForm = () => {
@@ -20,7 +19,6 @@ const SnippetForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    
     if (!code.trim()) {
       setError('Code cannot be empty');
       return;
@@ -39,64 +37,61 @@ const SnippetForm = () => {
     } catch (error) {
       const errorMessage = error.response?.data?.message || 'There was an error creating the snippet!';
       setError(errorMessage);
-      console.error('There was an error creating the snippet!', error);
+      console.error('Error creating snippet:', error);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="h-screen pt-5 flex flex-col justify-center items-center">
-      <form onSubmit={handleSubmit} className="w-full mx-auto flex flex-col flex-grow">
-        <div className="p-4 bg-black mb-4 flex items-center justify-between">
-          <div className="flex-grow flex space-x-2">
-            <LanguageDropdown value={language} onChange={handleLanguageChange} />
-            <ExpireTimeDropdown value={expireTime} onChange={handleExpireTimeChange} />
-          </div>
-          <button
-            type="submit"
-            className="p-2 bg-red-500 text-white rounded text-sm flex items-center"
-            disabled={loading}
-          >
-            {loading ? <RiLoader4Line className="animate-spin mr-2" /> : <BsArrowRight className="mr-2" />}
-            {loading ? 'Wait...' : 'Share'}
-          </button>
-        </div>
-        <textarea
-          className="w-full font-mono flex-grow p-2 border border-gray-700 rounded bg-black text-white text-sm outline-none"
-          style={{ minHeight: 'calc(100vh - 220px)' }}
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-          placeholder="Paste your code here..."
-          aria-label="Code Input"
-        ></textarea>
-        {error && (
-          <div 
-            data-dismissible="alert"
-            role="alert"
-            className="font-regular relative flex w-full rounded-lg bg-gradient-to-tr from-red-700 to-red-500 px-4 py-4 text-base text-white mt-4"
-          >
-            <div className="shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-                <path fillRule="evenodd"
-                  d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
-                  clipRule="evenodd"></path>
-              </svg>
-            </div>
-            <div className="ml-3 mr-12">
-              {error}
+    <div className="min-h-screen flex flex-col justify-center items-center bg-black text-white">
+      <div className="w-full max-w-6xl mx-auto p-8 bg-black shadow-md rounded-lg">
+        <h1 className="text-3xl font-bold mb-6 text-center">Paste And Share Your Snippets</h1>
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <LanguageDropdown value={language} onChange={handleLanguageChange} />
+              <ExpireTimeDropdown value={expireTime} onChange={handleExpireTimeChange} />
             </div>
             <button
-              data-dismissible-target="alert"
-              className="!absolute top-3 right-3 select-none rounded-lg py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-white transition-all hover:bg-white/10 active:bg-white/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-              type="button"
-              onClick={() => setError(null)}
+              type="submit"
+              className={`flex items-center justify-center px-4 py-2 rounded bg-gray-700 text-white ${
+                !code.trim() ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-600'
+              }`}
+              disabled={!code.trim()}
             >
-              Close
+              {loading && <RiLoader4Line className="animate-spin mr-2" />}
+              {loading ? 'Wait' : 'Public'}
             </button>
           </div>
-        )}
-      </form>
+          <textarea
+            className="w-full p-4 border border-slate-400 rounded-lg bg-gray-950 text-white text-sm focus:outline-none"
+            style={{ minHeight: '600px', height: '600px', width: '100%' }}
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            placeholder="Paste your code here..."
+            aria-label="Code Input"
+          ></textarea>
+          {error && (
+            <div 
+              className="p-4 bg-red-200 border border-red-500 text-red-800 rounded relative"
+              role="alert"
+            >
+              <span className="block sm:inline">{error}</span>
+              <button
+                type="button"
+                className="absolute top-0 bottom-0 right-0 px-4 py-3"
+                onClick={() => setError(null)}
+              >
+                <svg className="fill-current h-6 w-6 text-red-900" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <title>Close</title>
+                  <path d="M14.348 5.652a.5.5 0 00-.707 0L10 9.293 6.36 5.652a.5.5 0 10-.707.707L9.293 10l-3.64 3.64a.5.5 0 00.707.707L10 10.707l3.64 3.64a.5.5 0 00.707-.707L10.707 10l3.64-3.64a.5.5 0 000-.707z" />
+                </svg>
+              </button>
+            </div>
+          )}
+        </form>
+      </div>
     </div>
   );
 };
