@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import { FiCopy, FiShare2, FiPlus } from 'react-icons/fi';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-
+import { Spinner } from 'daisyui'; 
 const SnippetView = () => {
   const { uniqueCode } = useParams();
   const [snippet, setSnippet] = useState(null);
@@ -57,11 +57,8 @@ const SnippetView = () => {
 
   if (!snippet) {
     return (
-      <div className="p-4 animate-pulse bg-black text-white min-h-screen">
-        <div className="h-6 bg-gray-700 rounded mb-4"></div>
-        <div className="h-36 bg-gray-700 rounded mb-4"></div>
-        <div className="h-4 bg-gray-700 rounded mb-2"></div>
-        <div className="h-4 bg-gray-700 rounded mb-2"></div>
+      <div className="p-4 flex justify-center items-center bg-black text-white min-h-screen">
+        <Spinner className="animate-spin h-8 w-8 text-gray-500" /> {/* Daisy UI Spinner */}
       </div>
     );
   }
