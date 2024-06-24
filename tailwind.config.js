@@ -1,4 +1,3 @@
-// tailwind.config.js
 
 module.exports = {
   content: [
@@ -7,8 +6,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'custom-gray': '#242526',
+      },
       fontFamily: {
-        'oswald': ['Oswald', 'sans-serif'],
+        'khand': ['Khand', 'sans-serif'],
       },
     },
   },
