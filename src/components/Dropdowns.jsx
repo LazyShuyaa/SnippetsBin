@@ -1,77 +1,102 @@
 import React from 'react';
 
+
+
+const languageOptions = [
+  { value: 'abap', label: 'ABAP' },
+  { value: 'apex', label: 'Apex' },
+  { value: 'azcli', label: 'Azure CLI' },
+  { value: 'bat', label: 'Batch' },
+  { value: 'c', label: 'C' },
+  { value: 'clojure', label: 'Clojure' },
+  { value: 'coffeescript', label: 'CoffeeScript' },
+  { value: 'cpp', label: 'C++' },
+  { value: 'csharp', label: 'C#' },
+  { value: 'css', label: 'CSS' },
+  { value: 'dart', label: 'Dart' },
+  { value: 'dockerfile', label: 'Dockerfile' },
+  { value: 'elixir', label: 'Elixir' },
+  { value: 'fsharp', label: 'F#' },
+  { value: 'go', label: 'Go' },
+  { value: 'graphql', label: 'GraphQL' },
+  { value: 'groovy', label: 'Groovy' },
+  { value: 'html', label: 'HTML' },
+  { value: 'java', label: 'Java' },
+  { value: 'javascript', label: 'JavaScript' },
+  { value: 'json', label: 'JSON' },
+  { value: 'kotlin', label: 'Kotlin' },
+  { value: 'less', label: 'Less' },
+  { value: 'lua', label: 'Lua' },
+  { value: 'markdown', label: 'Markdown' },
+  { value: 'matlab', label: 'MATLAB' },
+  { value: 'nginx', label: 'Nginx' },
+  { value: 'objective-c', label: 'Objective-C' },
+  { value: 'pascal', label: 'Pascal' },
+  { value: 'perl', label: 'Perl' },
+  { value: 'php', label: 'PHP' },
+  { value: 'plaintext', label: 'Plain Text' },
+  { value: 'powershell', label: 'PowerShell' },
+  { value: 'python', label: 'Python' },
+  { value: 'r', label: 'R' },
+  { value: 'razor', label: 'Razor' },
+  { value: 'ruby', label: 'Ruby' },
+  { value: 'rust', label: 'Rust' },
+  { value: 'scss', label: 'SCSS' },
+  { value: 'shell', label: 'Shell' },
+  { value: 'solidity', label: 'Solidity' },
+  { value: 'sql', label: 'SQL' },
+  { value: 'swift', label: 'Swift' },
+  { value: 'typescript', label: 'TypeScript' },
+  { value: 'vbnet', label: 'VB.NET' },
+  { value: 'xml', label: 'XML' },
+  { value: 'yaml', label: 'YAML' }
+];
+
 const LanguageDropdown = ({ value, onChange }) => {
   return (
-    <select
-      value={value}
-      onChange={onChange}
-      className="p-2 border outline-none border-gray-700 rounded text-white text-sm bg-gray-800"
-    >
-      <option value="abap">ABAP</option>
-      <option value="apex">Apex</option>
-      <option value="azcli">Azure CLI</option>
-      <option value="bat">Batch</option>
-      <option value="c">C</option>
-      <option value="clojure">Clojure</option>
-      <option value="coffeescript">CoffeeScript</option>
-      <option value="cpp">C++</option>
-      <option value="csharp">C#</option>
-      <option value="css">CSS</option>
-      <option value="dart">Dart</option>
-      <option value="dockerfile">Dockerfile</option>
-      <option value="elixir">Elixir</option>
-      <option value="fsharp">F#</option>
-      <option value="go">Go</option>
-      <option value="graphql">GraphQL</option>
-      <option value="groovy">Groovy</option>
-      <option value="html">HTML</option>
-      <option value="java">Java</option>
-      <option value="javascript">JavaScript</option>
-      <option value="json">JSON</option>
-      <option value="kotlin">Kotlin</option>
-      <option value="less">Less</option>
-      <option value="lua">Lua</option>
-      <option value="markdown">Markdown</option>
-      <option value="matlab">MATLAB</option>
-      <option value="nginx">Nginx</option>
-      <option value="objective-c">Objective-C</option>
-      <option value="pascal">Pascal</option>
-      <option value="perl">Perl</option>
-      <option value="php">PHP</option>
-      <option value="plaintext">Plain Text</option>
-      <option value="powershell">PowerShell</option>
-      <option value="python">Python</option>
-      <option value="r">R</option>
-      <option value="razor">Razor</option>
-      <option value="ruby">Ruby</option>
-      <option value="rust">Rust</option>
-      <option value="scss">SCSS</option>
-      <option value="shell">Shell</option>
-      <option value="solidity">Solidity</option>
-      <option value="sql">SQL</option>
-      <option value="swift">Swift</option>
-      <option value="typescript">TypeScript</option>
-      <option value="vbnet">VB.NET</option>
-      <option value="xml">XML</option>
-      <option value="yaml">YAML</option>
-    </select>
+    <div className="dropdown">
+      <select
+        value={value}
+        onChange={onChange}
+        className="dropdown-content block p-2 border outline-none border-gray-700 rounded text-white text-sm bg-gray-800 overflow-y-auto max-h-60"
+      >
+        {languageOptions.map((option) => (
+          <option key={option.value} value={option.value}>{option.label}</option>
+        ))}
+      </select>
+    </div>
   );
 };
+
+
+
+
+const expireTimeOptions = [
+  { value: '5', label: '5 min' },
+  { value: '10', label: '10 min' },
+  { value: '30', label: '30 min' },
+  { value: '60', label: '1 hour' },
+  { value: 'never', label: 'Never' }
+];
 
 const ExpireTimeDropdown = ({ value, onChange }) => {
   return (
-    <select
-      value={value}
-      onChange={onChange}
-      className="p-2 border outline-none border-gray-700 rounded text-white text-sm bg-gray-800"
-    >
-      <option value="5">5 min</option>
-      <option value="10">10 min</option>
-      <option value="30">30 min</option>
-      <option value="60">1 hour</option>
-      <option value="never">Never</option>
-    </select>
+    <div className="dropdown">
+      <select
+        value={value}
+        onChange={onChange}
+        className="dropdown-content block p-2 border outline-none border-gray-700 rounded text-white text-sm bg-gray-800 overflow-y-auto max-h-60"
+      >
+        {expireTimeOptions.map((option) => (
+          <option key={option.value} value={option.value}>{option.label}</option>
+        ))}
+      </select>
+    </div>
   );
 };
 
+
+
 export { LanguageDropdown, ExpireTimeDropdown };
+
+
