@@ -104,7 +104,7 @@ const SnippetView = () => {
               )}
             </div>
           </div>
-          <div className="p-6 bg-black text-white rounded-b"> {/* Slightly increased padding */}
+          <div className="px-6 pb-6 bg-black text-white rounded-b"> {/* Adjusted padding to reduce space */}
             {renderCodeWithLineNumbers()}
           </div>
         </div>
