@@ -62,7 +62,7 @@ const SnippetView = () => {
         language={snippet.language}
         style={atomDark}
         showLineNumbers
-        customStyle={{ backgroundColor: '#000000' }}
+        customStyle={{ margin: '0', padding: '0', backgroundColor: '#000000' }}
       >
         {snippet.code}
       </SyntaxHighlighter>
@@ -79,14 +79,14 @@ const SnippetView = () => {
             <span>Language: {snippet?.language}</span>
             <div className="flex items-center">
               <button
-                className="p-1 rounded"
+                className="p-2 rounded-md text-lg"
                 onClick={copyToClipboard}
                 aria-label="Copy Code"
               >
                 <FiCopy />
               </button>
               <button
-                className="p-1 rounded"
+                className="p-2 rounded-md text-lg"
                 onClick={toggleDropdown}
                 aria-label="Dropdown"
               >
