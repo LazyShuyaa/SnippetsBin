@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FiCopy, FiShare2, FiPlus, FiMoreVertical, FiCode } from 'react-icons/fi';
 
 const DropdownMenu = ({ uniqueCode, copyToClipboard, shareUrl, closeDropdown }) => (
-  <div className="absolute right-0 mt-4 w-48 bg-gray-800 rounded-md shadow-lg">
+  <div className="absolute right-0 mt-10 w-48 bg-gray-800 rounded-md shadow-lg">
     <div className="py-1">
       <Link
         to={`/raw/${uniqueCode}`}
