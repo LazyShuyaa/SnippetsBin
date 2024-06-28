@@ -62,7 +62,7 @@ const SnippetView = () => {
         language={snippet.language}
         style={atomDark}
         showLineNumbers
-        customStyle={{ backgroundColor: '#000000', fontSize: '1.25rem' }} // Adjusted font size
+        customStyle={{ backgroundColor: '#000000', fontSize: '1.125rem' }} // Slightly increased font size
       >
         {snippet.code}
       </SyntaxHighlighter>
@@ -70,19 +70,19 @@ const SnippetView = () => {
   };
 
   return (
-    <div className="p-8 bg-black text-white min-h-screen"> {/* Increased padding */}
+    <div className="p-6 bg-black text-white min-h-screen"> {/* Slightly increased padding */}
       {loading ? (
         <LoadingSpinner />
       ) : (
         <div className="border border-gray-700 rounded">
-          <div className="bg-gray-700 p-4 rounded-t flex justify-between items-center text-white text-lg"> {/* Increased padding and font size */}
+          <div className="bg-gray-700 p-3 rounded-t flex justify-between items-center text-white text-base"> {/* Slightly increased padding and font size */}
             <span>Language: {snippet?.language}</span>
-            <div className="flex items-center space-x-4"> {/* Added space between icons */}
+            <div className="flex items-center space-x-3"> {/* Adjusted space between icons */}
               <button
                 className="p-2 rounded"
                 onClick={copyToClipboard}
                 aria-label="Copy Code"
-                style={{ fontSize: '1.5rem' }} // Adjusted icon size
+                style={{ fontSize: '1.25rem' }} // Slightly increased icon size
               >
                 <FiCopy />
               </button>
@@ -90,7 +90,7 @@ const SnippetView = () => {
                 className="p-2 rounded"
                 onClick={toggleDropdown}
                 aria-label="Dropdown"
-                style={{ fontSize: '1.5rem' }} // Adjusted icon size
+                style={{ fontSize: '1.25rem' }} // Slightly increased icon size
               >
                 <FiMoreVertical />
               </button>
@@ -104,7 +104,7 @@ const SnippetView = () => {
               )}
             </div>
           </div>
-          <div className="p-8 bg-black text-white rounded-b"> {/* Increased padding */}
+          <div className="p-6 bg-black text-white rounded-b"> {/* Slightly increased padding */}
             {renderCodeWithLineNumbers()}
           </div>
         </div>
