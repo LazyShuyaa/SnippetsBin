@@ -4,7 +4,6 @@ import { useParams, Link } from 'react-router-dom';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import LoadingSpinner from './LoadingSpinner';
-import DropdownMenu from './DropdownMenu';
 import { FiMoreVertical, FiCopy, FiShare2, FiDownload } from 'react-icons/fi';
 
 const SnippetView = () => {
@@ -50,10 +49,6 @@ const SnippetView = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
-  const closeDropdown = () => {
-    setDropdownOpen(false);
-  };
-
   const renderCodeWithLineNumbers = () => {
     if (!snippet) return null;
 
@@ -85,14 +80,22 @@ const SnippetView = () => {
               >
                 <FiMoreVertical />
               </button>
-              {dropdownOpen && (
-                <DropdownMenu
-                  uniqueCode={uniqueCode}
-                  copyToClipboard={copyToClipboard}
-                  shareUrl={shareUrl}
-                  closeDropdown={closeDropdown}
-                />
-              )}
+              <div className="ml-2">
+                <button
+                  className="p-1 rounded"
+                  onClick={copyToClipboard}
+                  aria-label="Copy"
+                >
+                  <FiCopy />
+                </button>
+                <button
+                  className="p-1 rounded"
+                  onClick={shareUrl}
+                  aria-label="Share"
+                >
+                  <FiShare2 />
+                </button>
+              </div>
             </div>
           </div>
           <div className="p-4 bg-black text-white rounded-b">
