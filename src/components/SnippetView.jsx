@@ -70,23 +70,23 @@ const SnippetView = () => {
   };
 
   return (
-    <div className="p-6 bg-black text-white min-h-screen">
+    <div className="p-4 bg-black text-white min-h-screen">
       {loading ? (
         <LoadingSpinner />
       ) : (
-        <div className="w-full max-w-3xl mx-auto border border-gray-700 rounded-lg">
-          <div className="bg-gray-700 p-4 rounded-t-lg flex justify-between items-center text-white">
-            <span className="text-lg font-semibold">Language: {snippet?.language}</span>
-            <div className="flex items-center space-x-2">
+        <div className="border border-gray-700 rounded">
+          <div className="bg-gray-700 p-2 rounded-t flex justify-between items-center text-white">
+            <span>Language: {snippet?.language}</span>
+            <div className="flex items-center">
               <button
-                className="p-2 rounded hover:bg-gray-800"
+                className="p-1 rounded"
                 onClick={copyToClipboard}
                 aria-label="Copy Code"
               >
                 <FiCopy />
               </button>
               <button
-                className="p-2 rounded hover:bg-gray-800"
+                className="p-1 rounded"
                 onClick={toggleDropdown}
                 aria-label="Dropdown"
               >
@@ -102,7 +102,7 @@ const SnippetView = () => {
               )}
             </div>
           </div>
-          <div className="p-4 bg-black text-white rounded-b-lg">
+          <div className="p-4 bg-black text-white rounded-b">
             {renderCodeWithLineNumbers()}
           </div>
         </div>
