@@ -5,6 +5,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import LoadingSpinner from './LoadingSpinner';
 import DropdownMenu from './DropdownMenu';
+import { FiMoreVertical, FiCopy, FiShare2, FiDownload } from 'react-icons/fi';
 
 const SnippetView = () => {
   const { uniqueCode } = useParams();
