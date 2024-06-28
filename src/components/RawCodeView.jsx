@@ -11,7 +11,7 @@ const RawCodeView = () => {
   useEffect(() => {
     const fetchRawCode = async () => {
       try {
-        const response = await axios.get(`/api/snippets/${uniqueCode}/raw`);
+        const response = await axios.get(`/api/snippets/${uniqueCode}`);
         setRawCode(response.data.code);
         setLoading(false);
       } catch (error) {
