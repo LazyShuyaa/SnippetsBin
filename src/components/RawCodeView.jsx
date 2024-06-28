@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const RawCodeView = () => {
   const { uniqueCode } = useParams();
@@ -37,12 +37,6 @@ const RawCodeView = () => {
   return (
     <div className="bg-black text-white min-h-screen">
       <div className="p-4">
-        <div className="flex justify-between items-center text-white">
-          <span className="flex-1"> </span>
-          <Link to="/" className="p-1 rounded" aria-label="Back to snippet">
-            Back
-          </Link>
-        </div>
         <div className="p-4">
           <pre className="whitespace-pre-wrap">{rawCode}</pre>
         </div>
