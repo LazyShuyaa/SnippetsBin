@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import LoadingSpinner from './LoadingSpinner';
 import DropdownMenu from './DropdownMenu';
-import { FiMoreVertical, FiCopy, FiShare2, FiDownload } from 'react-icons/fi';
+import { FiMoreVertical, FiCopy } from 'react-icons/fi';
 
 const SnippetView = () => {
   const { uniqueCode } = useParams();
@@ -77,7 +77,14 @@ const SnippetView = () => {
         <div className="border border-gray-700 rounded">
           <div className="bg-gray-700 p-2 rounded-t flex justify-between items-center text-white">
             <span>Language: {snippet?.language}</span>
-            <div className="relative">
+            <div className="flex items-center">
+              <button
+                className="p-1 rounded"
+                onClick={copyToClipboard}
+                aria-label="Copy Code"
+              >
+                <FiCopy />
+              </button>
               <button
                 className="p-1 rounded"
                 onClick={toggleDropdown}
