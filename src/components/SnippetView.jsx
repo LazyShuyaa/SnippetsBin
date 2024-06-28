@@ -62,7 +62,7 @@ const SnippetView = () => {
         language={snippet.language}
         style={atomDark}
         showLineNumbers
-        customStyle={{ backgroundColor: '#000000' }}
+        customStyle={{ backgroundColor: '#000000', fontSize: '1.25rem' }} // Adjusted font size
       >
         {snippet.code}
       </SyntaxHighlighter>
@@ -70,25 +70,27 @@ const SnippetView = () => {
   };
 
   return (
-    <div className="p-4 bg-black text-white min-h-screen">
+    <div className="p-8 bg-black text-white min-h-screen"> {/* Increased padding */}
       {loading ? (
         <LoadingSpinner />
       ) : (
         <div className="border border-gray-700 rounded">
-          <div className="bg-gray-700 p-2 rounded-t flex justify-between items-center text-white">
+          <div className="bg-gray-700 p-4 rounded-t flex justify-between items-center text-white text-lg"> {/* Increased padding and font size */}
             <span>Language: {snippet?.language}</span>
-            <div className="flex items-center">
+            <div className="flex items-center space-x-4"> {/* Added space between icons */}
               <button
-                className="p-1 rounded"
+                className="p-2 rounded"
                 onClick={copyToClipboard}
                 aria-label="Copy Code"
+                style={{ fontSize: '1.5rem' }} // Adjusted icon size
               >
                 <FiCopy />
               </button>
               <button
-                className="p-1 rounded"
+                className="p-2 rounded"
                 onClick={toggleDropdown}
                 aria-label="Dropdown"
+                style={{ fontSize: '1.5rem' }} // Adjusted icon size
               >
                 <FiMoreVertical />
               </button>
@@ -102,7 +104,7 @@ const SnippetView = () => {
               )}
             </div>
           </div>
-          <div className="p-4 bg-black text-white rounded-b">
+          <div className="p-8 bg-black text-white rounded-b"> {/* Increased padding */}
             {renderCodeWithLineNumbers()}
           </div>
         </div>
