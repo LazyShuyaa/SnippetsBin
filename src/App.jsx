@@ -3,9 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SnippetForm from './components/SnippetForm';
 import SnippetView from './components/SnippetView';
 import RawCodeView from './components/RawCodeView';
-import usePageTracking from './usePageTracking'; 
 function App() {
-  usePageTracking(); 
 
   return (
     <Router>
