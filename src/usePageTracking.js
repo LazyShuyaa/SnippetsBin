@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import ReactGA from 'react-ga';
 
-const TRACKING_ID = "G-7L3YFHZ4QT"; 
+const TRACKING_ID = "G-J69CSYXRBB"; 
 
 ReactGA.initialize(TRACKING_ID);
 
