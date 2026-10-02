@@ -20,13 +20,3 @@ export default function LoadingSpinner({ className, label = 'Loading…' }) {
     </span>
   );
 }
-
-/** Centered spinner for full-page loading states. */
-export function FullPageLoader({ label = 'Loading snippet…' }) {
-  return (
-    <div className="flex flex-1 flex-col items-center justify-center gap-4 py-32">
-      <LoadingSpinner className="text-brand-300 [&>svg]:h-9 [&>svg]:w-9" label={label} />
-      <p className="text-sm text-ink-400">{label}</p>
-    </div>
-  );
-}

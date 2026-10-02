@@ -41,10 +41,6 @@ export function isDemoMode() {
   return status.demo;
 }
 
-export function demoReason() {
-  return status.reason;
-}
-
 export function subscribeApiStatus(listener) {
   listeners.add(listener);
   return () => listeners.delete(listener);

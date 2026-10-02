@@ -119,19 +119,9 @@ export function formatBytes(text) {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-/** Guess a syntax hint for the free-text search box. */
-export function matchesSearch(haystack, needle) {
-  if (!needle) return true;
-  return String(haystack).toLowerCase().includes(String(needle).toLowerCase());
-}
-
 /** Platform-aware keyboard shortcut label (⌘ vs Ctrl). */
 export const IS_APPLE =
   typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent || '');
-
-export function modifierKey() {
-  return IS_APPLE ? '⌘' : 'Ctrl';
-}
 
 /** Trigger a client-side file download. */
 export function downloadFile(filename, contents, type = 'text/plain;charset=utf-8') {
