@@ -1,20 +1,18 @@
 {
-  "name": "api",
+  "name": "snippetbin-api",
   "version": "1.0.0",
-  "description": "Express.js project for Women Who Code presentation",
+  "private": true,
+  "description": "Express + MongoDB API for SnippetBin (create and fetch snippets).",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "axios": "^0.24.0",
     "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
+    "dotenv": "^16.4.5",
     "express": "^4.17.1",
-    "uuid": "^8.3.2",
-    "mongoose":"^8.4.0"
+    "mongoose": "^8.4.0",
+    "uuid": "^8.3.2"
   }
 }

@@ -1,31 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Share Your Code Snippets...">
+  <title>SnippetBin — Paste, share, and ship code</title>
+  <meta name="description" content="SnippetBin is a fast, minimal place to paste code and share it with a short link. Syntax highlighting, expiring links, no sign-up.">
+  <meta name="theme-color" content="#05060a">
+  <meta name="color-scheme" content="dark">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Khand:wght@300;400;500;600;700&display=swap" rel="stylesheet">  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Khand:wght@500;600;700&display=swap"
+    rel="stylesheet">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://graph.org/file/5b4e79f1d2947982938ef.jpg">
+  <!-- Favicon: inline data URI + file fallback -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%238b6bff'/%3E%3Cstop offset='1' stop-color='%2338dcd0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='%230b0e16'/%3E%3Cpath d='M24 20 14 32l10 12' fill='none' stroke='url(%23g)' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M40 20l10 12-10 12' fill='none' stroke='url(%23g)' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 
-  <!-- Loading logo -->
-  <link rel="icon" type="image/svg+xml" href="https://graph.org/file/5b4e79f1d2947982938ef.jpg" sizes="any">
-  
   <!-- Open Graph metadata for social sharing -->
-  <meta property="og:title" content="SnippetBin">
-  <meta property="og:description" content="A platform to share Code Snippets...">
+  <meta property="og:title" content="SnippetBin — Paste, share, and ship code">
+  <meta property="og:description" content="A fast, minimal place to paste code and share it with a short link.">
   <meta property="og:image" content="https://graph.org/file/4974e97c1093c7a923bcd.jpg">
   <meta property="og:url" content="https://snippetbin.vercel.app">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="apple-touch-icon" href="/logo.svg">
+  <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
   <div id="root"></div>
-
   <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

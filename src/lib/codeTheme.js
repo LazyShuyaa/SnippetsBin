@@ -1,0 +1,76 @@
+/**
+ * Custom Prism theme that matches the SnippetBin palette.
+ * Passed to <SyntaxHighlighter style={codeTheme} /> so tokens are themed
+ * through inline styles (no !important CSS battles).
+ */
+const mono = "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
+
+export const codeTheme = {
+  'code[class*="language-"]': {
+    color: '#dbe2f2',
+    background: 'none',
+    fontFamily: mono,
+    fontSize: 'inherit',
+    lineHeight: 'inherit',
+    direction: 'ltr',
+    textAlign: 'left',
+    whiteSpace: 'pre',
+    wordSpacing: 'normal',
+    wordBreak: 'normal',
+    tabSize: 2,
+    hyphens: 'none',
+  },
+  'pre[class*="language-"]': {
+    color: '#dbe2f2',
+    background: 'transparent',
+    fontFamily: mono,
+    fontSize: 'inherit',
+    lineHeight: 'inherit',
+    margin: 0,
+    padding: 0,
+    overflow: 'visible',
+  },
+  comment: { color: '#5b6880', fontStyle: 'italic' },
+  prolog: { color: '#5b6880' },
+  doctype: { color: '#5b6880' },
+  cdata: { color: '#5b6880' },
+  punctuation: { color: '#8b98ae' },
+  namespace: { opacity: 0.75 },
+  property: { color: '#9ecbff' },
+  tag: { color: '#ff8fb8' },
+  boolean: { color: '#ffb87c' },
+  number: { color: '#ffb87c' },
+  constant: { color: '#ffb87c' },
+  symbol: { color: '#c1a3ff' },
+  deleted: { color: '#ff8080' },
+  selector: { color: '#a5e075' },
+  'attr-name': { color: '#ffd48f' },
+  string: { color: '#7ef0e6' },
+  char: { color: '#7ef0e6' },
+  builtin: { color: '#8fd6ff' },
+  inserted: { color: '#a5e075' },
+  operator: { color: '#a9b6d0' },
+  entity: { color: '#7ef0e6' },
+  url: { color: '#7ef0e6' },
+  atrule: { color: '#c1a3ff' },
+  'attr-value': { color: '#7ef0e6' },
+  keyword: { color: '#c1a3ff', fontWeight: '500' },
+  function: { color: '#8fb8ff' },
+  'class-name': { color: '#8fe3c8' },
+  regex: { color: '#a5e075' },
+  important: { color: '#ffb87c', fontWeight: 'bold' },
+  variable: { color: '#dbe2f2' },
+  bold: { fontWeight: 'bold' },
+  italic: { fontStyle: 'italic' },
+  'react-syntax-highlighter-line-number': {
+    color: '#414c63',
+    display: 'inline-block',
+    minWidth: '2.25em',
+    paddingRight: '1.25em',
+    textAlign: 'right',
+    userSelect: 'none',
+    fontStyle: 'normal',
+  },
+};
+
+export default codeTheme;
