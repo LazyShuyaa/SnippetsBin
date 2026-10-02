@@ -2,9 +2,310 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------------------------------------------------------ *
+ * Design tokens
+ * ------------------------------------------------------------------ */
+@layer base {
+  :root {
+    color-scheme: dark;
+    --grid-size: 44px;
+  }
 
-body {
-  background-color: black;
-  color: white; 
-  margin: 0;
-  padding: 0; }
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ink-950 font-sans text-ink-100 antialiased;
+    margin: 0;
+    min-height: 100vh;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'cv11', 'ss01';
+    font-variation-settings: 'opsz' 32;
+  }
+
+  ::selection {
+    background: rgba(113, 69, 247, 0.38);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(139 107 255);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  /* Slim, themed scrollbars */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #2a3346 transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #232b3d;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #38435c;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  textarea,
+  input {
+    font-family: inherit;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Components
+ * ------------------------------------------------------------------ */
+@layer components {
+  /* Frosted panel used for cards, popovers and the header. */
+  .panel {
+    @apply relative rounded-2xl border border-white/[0.08] bg-ink-900/70 backdrop-blur-xl;
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
+      0 24px 60px -32px rgba(0, 0, 0, 0.95);
+  }
+
+  /* Hairline highlight along the top edge of a panel. */
+  .panel-sheen::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.22),
+      transparent
+    );
+    pointer-events: none;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-2xs font-medium tracking-wide text-ink-200;
+  }
+
+  .kbd {
+    @apply inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded border border-white/10 bg-white/[0.06] px-1.5 font-mono text-[10px] font-medium text-ink-300;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  }
+
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-xl px-3.5 py-2 text-sm font-semibold
+      transition duration-200 ease-snap disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply btn relative overflow-hidden text-white;
+    background-image: linear-gradient(120deg, #8b6bff 0%, #6c3df0 45%, #14bdb4 130%);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.28) inset,
+      0 14px 34px -16px rgba(113, 69, 247, 0.9);
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  .btn-secondary {
+    @apply btn border border-white/10 bg-white/[0.05] text-ink-100 hover:border-white/20 hover:bg-white/[0.09];
+  }
+
+  .btn-ghost {
+    @apply btn text-ink-300 hover:bg-white/[0.06] hover:text-ink-100;
+  }
+
+  .icon-btn {
+    @apply inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-transparent text-ink-300
+      transition duration-200 ease-snap hover:border-white/10 hover:bg-white/[0.06] hover:text-white
+      disabled:pointer-events-none disabled:opacity-40;
+  }
+
+  .icon-btn-active {
+    @apply border-white/15 bg-white/[0.09] text-white;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-white/10 bg-ink-850/80 px-3 py-2 text-sm text-ink-100
+      placeholder:text-ink-400 focus:border-brand-400/60 focus:outline-none focus:ring-2 focus:ring-brand-500/25;
+  }
+
+  /* Editor surface */
+  .code-surface {
+    @apply relative overflow-hidden rounded-2xl border border-white/[0.08] bg-ink-950/80;
+  }
+
+  .code-area {
+    @apply block w-full resize-none border-0 bg-transparent py-4 font-mono text-[13.5px] leading-6 text-ink-100
+      placeholder:text-ink-500 focus:outline-none focus:ring-0;
+    tab-size: 2;
+  }
+
+  .menu-item {
+    @apply flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-sm font-medium text-ink-200
+      transition-colors duration-150 hover:bg-white/[0.07] hover:text-white focus:bg-white/[0.07] focus:text-white focus:outline-none;
+  }
+
+  .link-underline {
+    @apply relative font-medium text-ink-100 transition-colors hover:text-white;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Utilities
+ * ------------------------------------------------------------------ */
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-200 via-brand-300 to-aqua-300 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-warm {
+    @apply bg-gradient-to-r from-flare-400 via-brand-300 to-aqua-300 bg-clip-text text-transparent;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+  }
+
+  /* Radial fade so the grid dissolves into the page. */
+  .mask-radial {
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 20%, transparent 75%);
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 20%, transparent 75%);
+  }
+
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Animated conic glow behind primary CTAs */
+  .ring-glow {
+    box-shadow:
+      0 0 0 1px rgba(139, 107, 255, 0.35),
+      0 18px 50px -18px rgba(113, 69, 247, 0.6);
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-white/[0.06];
+  }
+
+  .skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.08),
+      transparent
+    );
+    animation: shimmer 1.8s infinite;
+  }
+
+  /* Syntax highlighting: keep the generated markup transparent so the
+     card background shows through. */
+  .code-scroll pre,
+  .code-scroll code {
+    background: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: theme('fontFamily.mono') !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+
+  .code-scroll code {
+    display: block;
+    tab-size: 2;
+  }
+
+  /* Unwrapped: horizontal scrolling. */
+  .code-scroll[data-wrap='false'] code {
+    white-space: pre;
+  }
+
+  /* Wrapped: soft wraps that keep the line-number gutter aligned. */
+  .code-scroll[data-wrap='true'] code,
+  .code-scroll[data-wrap='true'] code span {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Toast lifetime indicator */
+@keyframes toast-progress {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+.toast-progress {
+  width: 100%;
+  transform-origin: left center;
+  animation-name: toast-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
